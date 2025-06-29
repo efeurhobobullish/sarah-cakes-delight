@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah Cakes N Events - Premium Baking & Event Services</title>
+    <meta name="description" content="Professional baking and event services in Ughelli Delta State. Custom cakes, pastries, and event planning for weddings, birthdays, and special occasions.">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Load CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Inline critical CSS -->
+    <style>
+        @font-face {
+            font-family: 'Playfair Display';
+            font-style: normal;
+            font-weight: 400 700;
+            font-display: swap;
+            src: url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300 600;
+            font-display: swap;
+            src: url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+        }
+        
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JhaW4iIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48Y2lyY2xlIGN4PSIyNSIgY3k9IjI1IiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xIi8+PGNpcmNsZSBjeD0iNzUiIGN5PSI3NSIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iMTAiIHI9IjAuNSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMiIvPjxjaXJjbGUgY3g9IjEwIiBjeT0iNjAiIHI9IjAuNSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMiIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9InVybCgjZ3JhaW4pIi8+PC9zdmc+');
+        }
+        
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .whatsapp-float {
+            animation: pulse 2s infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .nav-scroll {
+            transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .gallery-item {
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-overlay {
+            transition: opacity 0.3s ease;
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .modal {
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            animation: modalSlideIn 0.4s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from { 
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .modal-content::before {
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .modal-icon {
+            animation: iconPulse 2s infinite;
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .modal-close {
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close::before {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-inter">
+    <!-- Navigation -->
+    <nav class="nav-scroll fixed w-full top-0 z-50 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="font-playfair text-2xl font-bold text-white">
+                Sarah Cakes N Events
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-white hover:text-pink-200 transition-colors">Home</a>
+                <a href="#about" class="text-white hover:text-pink-200 transition-colors">About</a>
+                <a href="#services" class="text-white hover:text-pink-200 transition-colors">Services</a>
+                <a href="#portfolio" class="text-white hover:text-pink-200 transition-colors">Portfolio</a>
+                <a href="#contact" class="text-white hover:text-pink-200 transition-colors">Contact</a>
+            </div>
+            <button class="md:hidden text-white" aria-label="Menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center relative">
+        <div class="floating-elements">
+            <div class="absolute w-20 h-20 rounded-full bg-white bg-opacity-10 top-1/5 left-1/10 animate-float animation-delay-2000"></div>
+            <div class="absolute w-32 h-32 rounded-full bg-white bg-opacity-10 top-3/5 right-1/6 animate-float animation-delay-4000"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 text-center text-white relative z-10">
+            <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Crafting Sweet<br>
+                <span class="text-pink-200">Memories</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+                Premium baking services and event planning that transforms your special moments into unforgettable experiences
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#portfolio" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-pink-50 transition-all transform hover:scale-105">
+                    View My Work
+                </a>
+                <a href="#contact" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-all">
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="font-playfair text-4xl font-bold text-gray-800 mb-6">
+                        About Sarah
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                        With over 8 years of passion-driven experience in the culinary arts, I specialize in creating extraordinary cakes and managing memorable events. Every creation tells a story, and I'm here to help you tell yours through the perfect blend of flavors, artistry, and attention to detail.
+                    </p>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        From intimate birthday celebrations to grand wedding receptions, I bring creativity, precision, and love to every project. My commitment to using premium ingredients and innovative techniques ensures that every bite is as beautiful as it looks.
+                    </p>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-purple-600 mb-2">500+</div>
+                            <div class="text-gray-600">Happy Clients</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-purple-600 mb-2">8+</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-purple-600 mb-2">1000+</div>
+                            <div class="text-gray-600">Cakes Created</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl p-8 h-96 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-birthday-cake text-6xl text-purple-500 mb-4" aria-hidden="true"></i>
+                            <p class="text-gray-600 font-medium">Professional Baker & Event Planner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl font-bold text-gray-800 mb-4">
+                    My Services
+                </h2>
+                <p class="text-gray-600 text-xl max-w-3xl mx-auto">
+                    Comprehensive baking and event services tailored to make your celebration perfect
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-2xl p-8 text-center">
+                    <div class="service-icon text-5xl mb-6">
+                        <i class="fas fa-birthday-cake" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-playfair text-2xl font-semibold mb-4 text-gray-800">Custom Cakes</h3>
+                    <p class="text-gray-600 mb-6">Personalized cakes for birthdays, weddings, anniversaries, and special occasions. From classic flavors to innovative designs.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Wedding Cakes</li>
+                        <li>• Birthday Cakes</li>
+                        <li>• Anniversary Cakes</li>
+                        <li>• Custom Designs</li>
+                    </ul>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl p-8 text-center">
+                    <div class="service-icon text-5xl mb-6">
+                        <i class="fas fa-cookie-bite" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-playfair text-2xl font-semibold mb-4 text-gray-800">Pastries & Treats</h3>
+                    <p class="text-gray-600 mb-6">Delicious pastries, cupcakes, cookies, and sweet treats perfect for any gathering or personal indulgence.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Cupcakes</li>
+                        <li>• Cookies</li>
+                        <li>• Macarons</li>
+                        <li>• Pastries</li>
+                    </ul>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl p-8 text-center">
+                    <div class="service-icon text-5xl mb-6">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-playfair text-2xl font-semibold mb-4 text-gray-800">Event Planning</h3>
+                    <p class="text-gray-600 mb-6">Complete event planning services including dessert tables, catering coordination, and party setup for memorable celebrations.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Dessert Tables</li>
+                        <li>• Party Planning</li>
+                        <li>• Catering Coordination</li>
+                        <li>• Event Styling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl font-bold text-gray-800 mb-4">
+                    My Portfolio
+                </h2>
+                <p class="text-gray-600 text-xl max-w-3xl mx-auto">
+                    A showcase of my finest creations and successful events
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="gallery-item relative overflow-hidden rounded-2xl">
+                    <img src="images/sarah1.jpg" alt="Elegant Wedding Cake" class="w-full h-64 object-cover rounded-2xl" loading="lazy">
+                    <div class="gallery-overlay absolute inset-0 bg-gradient-to-r from-purple-600/80 to-pink-600/80 opacity-0 flex items-center justify-center text-white font-semibold rounded-2xl">
+                        Elegant Wedding Cake
+                    </div>
+                </div>
+                
+                <div class="gallery-item relative overflow-hidden rounded-2xl">
+                    <img src="images/sarah2.jpg" alt="Birthday Celebration" class="w-full h-64 object-cover rounded-2xl" loading="lazy">
+                    <div class="gallery-overlay absolute inset-0 bg-gradient-to-r from-purple-600/80 to-pink-600/80 opacity-0 flex items-center justify-center text-white font-semibold rounded-2xl">
+                        Birthday Celebration
+                    </div>
+                </div>
+                
+                <div class="gallery-item relative overflow-hidden rounded-2xl">
+                    <img src="images/sarah3.jpg" alt="Gourmet Cupcakes" class="w-full h-64 object-cover rounded-2xl" loading="lazy">
+                    <div class="gallery-overlay absolute inset-0 bg-gradient-to-r from-purple-600/80 to-pink-600/80 opacity-0 flex items-center justify-center text-white font-semibold rounded-2xl">
+                        Gourmet Cupcakes
+                    </div>
+                </div>
+                
+                <div class="gallery-item relative overflow-hidden rounded-2xl">
+                    <img src="images/sarah4.jpg" alt="Anniversary Special" class="w-full h-64 object-cover rounded-2xl" loading="lazy">
+                    <div class="gallery-overlay absolute inset-0 bg-gradient-to-r from-purple-600/80 to-pink-600/80 opacity-0 flex items-center justify-center text-white font-semibold rounded-2xl">
+                        Anniversary Special
+                    </div>
+                </div>
+                
+                <div class="gallery-item relative overflow-hidden rounded-2xl">
+                    <img src="images/sarah5.jpg" alt="Corporate Event" class="w-full h-64 object-cover rounded-2xl" loading="lazy">
+                    <div class="gallery-overlay absolute inset-0 bg-gradient-to-r from-purple-600/80 to-pink-600/80 opacity-0 flex items-center justify-center text-white font-semibold rounded-2xl">
+                        Corporate Event
+                    </div>
+                </div>
+                
+                <div class="gallery-item relative overflow-hidden rounded-2xl">
+                    <img src="images/sarah6.jpg" alt="Holiday Treats" class="w-full h-64 object-cover rounded-2xl" loading="lazy">
+                    <div class="gallery-overlay absolute inset-0 bg-gradient-to-r from-purple-600/80 to-pink-600/80 opacity-0 flex items-center justify-center text-white font-semibold rounded-2xl">
+                        Holiday Treats
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl font-bold text-gray-800 mb-4">
+                    Get In Touch
+                </h2>
+                <p class="text-gray-600 text-xl max-w-3xl mx-auto">
+                    Ready to create something amazing together? Let's discuss your sweet dreams!
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="contact-form rounded-3xl p-8 bg-gradient-to-br from-purple-50 to-pink-50">
+                    <form id="contactForm" action="https://formsubmit.co/sarahcakesevents@gmail.com" method="POST" class="space-y-6">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-gray-700 font-medium mb-2">First Name</label>
+                                <input type="text" id="firstName" name="name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Your first name" required>
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-gray-700 font-medium mb-2">Last Name</label>
+                                <input type="text" id="lastName" name="lastname" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Your last name">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="your.email@example.com" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Phone</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="+234 XXX XXX XXXX">
+                        </div>
+                        <div>
+                            <label for="eventType" class="block text-gray-700 font-medium mb-2">Event Type</label>
+                            <select id="eventType" name="event-type" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="">Select event type</option>
+                                <option value="Wedding">Wedding</option>
+                                <option value="Birthday">Birthday</option>
+                                <option value="Anniversary">Anniversary</option>
+                                <option value="Corporate Event">Corporate Event</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Tell me about your dream event..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="bg-white rounded-2xl p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-purple-600" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Location</h3>
+                                <p class="text-gray-600">Ighagbomi Street, Off Uba Ughelli Delta State</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone text-purple-600" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Phone</h3>
+                                <p class="text-gray-600">+234 8039 9178 98</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-purple-600" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Email</h3>
+                                <p class="text-gray-600">sarahcakesevents@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-clock text-purple-600" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Business Hours</h3>
+                                <p class="text-gray-600">Mon - Sat: 9AM - 6PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6">
+                        <h3 class="font-semibold text-gray-800 mb-4">Follow Me</h3>
+                        <div class="flex space-x-4">
+                            <a href="https://www.facebook.com/profile.php?id=61576685021371" class="bg-blue-100 p-3 rounded-full text-blue-600 hover:bg-blue-200 transition-colors" aria-label="Facebook">
+                                <i class="fab fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" class="bg-pink-100 p-3 rounded-full text-pink-600 hover:bg-pink-200 transition-colors" aria-label="Instagram">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" class="bg-blue-100 p-3 rounded-full text-blue-600 hover:bg-blue-200 transition-colors" aria-label="Twitter">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal fixed inset-0 hidden items-center justify-center z-2000 bg-gradient-to-br from-purple-600/90 to-pink-600/90 backdrop-blur-sm">
+        <div class="modal-content bg-gradient-to-b from-white to-gray-50 p-12 rounded-3xl max-w-md w-full text-center relative overflow-hidden shadow-2xl border border-white/20">
+            <div class="modal-icon text-5xl mb-6 bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <i class="fas fa-gift" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-playfair text-3xl font-bold mb-3 bg-gradient-to-br from-purple-600 to-pink-600 bg-clip-text text-transparent">Sweet! Message Delivered!</h3>
+            <p class="text-gray-600 text-lg mb-2">🎂 Your message has been baked to perfection and sent!</p>
+            <p class="text-gray-500 text-sm mb-4">I'll whip up a response faster than you</p>
+            <button class="modal-close bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-8 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all relative overflow-hidden">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal fixed inset-0 hidden items-center justify-center z-2000 bg-gradient-to-br from-purple-600/90 to-pink-600/90 backdrop-blur-sm">
+        <div class="modal-content bg-gradient-to-b from-white to-gray-50 p-12 rounded-3xl max-w-md w-full text-center relative overflow-hidden shadow-2xl border border-white/20">
+            <div class="modal-icon text-5xl mb-6 text-red-500">
+                <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-2">Oops! Something went wrong</h3>
+            <p class="text-gray-600 mb-4">There was a problem sending your message. Please try again later or contact me directly at sarahcakesevents@gmail.com</p>
+            <button class="modal-close bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-8 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all relative overflow-hidden">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="font-playfair text-3xl font-bold mb-4">Sarah Cakes N Events</div>
+            <p class="text-gray-400 mb-6">Creating sweet memories, one celebration at a time</p>
+            <p class="text-gray-500 text-sm">&copy; 2025 Sarah Cakes N Events. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2348039917898?text=Hi%20Sarah!%20I%27d%20like%20to%20discuss%20my%20event%20requirements." class="whatsapp-float fixed bottom-8 right-8 w-16 h-16 rounded-full bg-green-500 text-white flex items-center justify-center text-2xl shadow-lg z-1000" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    </a>
+
+    <!-- Deferred JavaScript -->
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Navigation background on scroll
+            const nav = document.querySelector('.nav-scroll');
+            const navTitle = nav.querySelector('.font-playfair');
+            const navLinks = nav.querySelectorAll('a');
+            
+            function updateNavOnScroll() {
+                if (window.scrollY > 100) {
+                    nav.classList.add('scrolled', 'bg-white/95', 'backdrop-blur', 'shadow-lg');
+                    navTitle.classList.replace('text-white', 'text-gray-800');
+                    navLinks.forEach(link => {
+                        link.classList.replace('text-white', 'text-gray-600');
+                        link.classList.replace('hover:text-pink-200', 'hover:text-purple-600');
+                    });
+                } else {
+                    nav.classList.remove('scrolled', 'bg-white/95', 'backdrop-blur', 'shadow-lg');
+                    navTitle.classList.replace('text-gray-800', 'text-white');
+                    navLinks.forEach(link => {
+                        link.classList.replace('text-gray-600', 'text-white');
+                        link.classList.replace('hover:text-purple-600', 'hover:text-pink-200');
+                    });
+                }
+            }
+            
+            // Initial check in case page loads with scroll
+            updateNavOnScroll();
+            window.addEventListener('scroll', updateNavOnScroll);
+
+            // Modal functionality
+            const successModal = document.getElementById('successModal');
+            const errorModal = document.getElementById('errorModal');
+            const closeButtons = document.querySelectorAll('.modal-close');
+
+            function showModal(modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideModal(modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    hideModal(modal);
+                });
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    hideModal(event.target);
+                }
+            });
+
+            // Form submission with FormSubmit
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: new FormData(this),
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            showModal(successModal);
+                            this.reset();
+                        } else {
+                            throw new Error('Network response was not ok');
+                        }
+                    })
+                    .catch(error => {
+                        showModal(errorModal);
+                        console.error('Error:', error);
+                    });
+                });
+            }
+
+            // Optimized hover effects using CSS classes instead of inline styles
+            document.querySelectorAll('.card-hover').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.classList.add('hover:scale-105', 'shadow-lg');
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.classList.remove('hover:scale-105', 'shadow-lg');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
